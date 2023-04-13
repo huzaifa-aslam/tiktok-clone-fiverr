@@ -1,0 +1,36 @@
+.primary-text {
+  color: #5f5bff !important;
+}
+.primary-color {
+  color: #5f5bff !important;
+}
+.primary-bg {
+  background-color: #5f5bff !important;
+}
+.button-primary {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: #5f5bff;
+  color: white;
+  border-radius: 28.5px;
+  padding: 13px 23px;
+}
+/* .bg-primary{
+    background-color: #5942FF !important
+
+} */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  font-family: sans-serif !important;
+}
+.padd-horizontal {
+  padding-left: 100px !important;
+  padding-right: 100px !important;
+}

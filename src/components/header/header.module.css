@@ -1,0 +1,17 @@
+.logo {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+}
+.menu {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #000000;
+}
+.span {
+  position: relative;
+  left: 10px;
+  top: 2px;
+}

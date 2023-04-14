@@ -11,6 +11,7 @@ import {
 import { FiMoreHorizontal } from "react-icons/fi";
 
 import "./home.css";
+import { Sidebar } from "../../components/sidebar/Sidebar";
 const Home = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -26,9 +27,14 @@ const Home = () => {
     setIsDarkMode(!isDarkMode);
   };
   return (
-    <div className={isDarkMode ? "bg-dark text-light" : "bg-light text-dark"}>
+    <div
+      className={
+        isDarkMode ? "bg-dark text-light" : "light-background text-dark"
+      }
+    >
       <div className="container">
         <div className="row">
+          <Sidebar isDarkMode={isDarkMode} />
           <div className="col-md-3 pt-4">
             <h6 className="logo">Logo</h6>
           </div>

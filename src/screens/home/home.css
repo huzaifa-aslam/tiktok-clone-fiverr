@@ -102,6 +102,9 @@
 .bg-black {
   background-color: black;
 }
+.light-background {
+  background-color: #eef1f4;
+}
 .blur-text {
   color: #d3d3d366;
 }
@@ -164,8 +167,11 @@
 /* actions css */
 .action_main {
   height: 400px;
-  margin-top: 373px;
+  /* margin-top: 373px; */
   border-radius: 24px;
+  position: relative;
+  top: 49%;
+  background-color: #0000005e;
 }
 .action_icon {
   background-color: #80808040;

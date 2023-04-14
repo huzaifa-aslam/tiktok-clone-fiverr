@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import { FaUserPlus } from "react-icons/fa";
-import { BsPlay } from "react-icons/bs";
-import { BiVolumeFull, BiVolumeMute, BiPause } from "react-icons/bi";
+import profileCcon from "./../../assets/images/icon.png";
+// import { BsPlay } from "react-icons/bs";
+import {
+  BiVolumeFull,
+  BiVolumeMute,
+  // BiPause
+} from "react-icons/bi";
 import { BsFillMoonFill, BsSun } from "react-icons/bs";
 import {
   AiOutlineHeart,
@@ -43,9 +48,9 @@ const Home = () => {
           <div className="col-md-6 d-flex justify-content-center">
             <div className="video-card">
               <div className="blur-overlay" />
-              <div className="pl-icon">
+              {/* <div className="pl-icon">
                 {isPlaying ? <BiPause size={40} /> : <BsPlay size={40} />}
-              </div>
+              </div> */}
               <div className="mic-icon" onClick={handleMicClick}>
                 {isMuted ? (
                   <BiVolumeMute size={30} />
@@ -57,11 +62,11 @@ const Home = () => {
                 <ReactPlayer
                   muted={isMuted}
                   playing={isPlaying}
-                  url="https://www.youtube.com/watch?v=_xzA-_L0zK4"
+                  url="https://www.youtube.com/watch?v=9qHf6sUzKZ8"
                   controls={false}
-                  width="640px"
+                  width="100wh"
                   height="100vh"
-                  aspectRatio="9:16"
+                  // aspectRatio="9:16"
                   onPause={() => {
                     handlePlay();
                   }}
@@ -77,7 +82,8 @@ const Home = () => {
                 <div className="video-info">
                   <div className="profile-image">
                     <img
-                      src="https://via.placeholder.com/50x50.png"
+                      style={{ height: "47px" }}
+                      src={profileCcon}
                       alt="Profile"
                     />
                   </div>

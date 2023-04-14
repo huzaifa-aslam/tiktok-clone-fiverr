@@ -62,7 +62,7 @@ const Home = () => {
                 <ReactPlayer
                   muted={isMuted}
                   playing={isPlaying}
-                  url="https://www.youtube.com/watch?v=9qHf6sUzKZ8"
+                  url="https://www.youtube.com/shorts/7npz-I3WIGw"
                   controls={false}
                   width="100wh"
                   height="100vh"

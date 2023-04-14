@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import Layout from "../../layout";
 import ReactPlayer from "react-player";
 import { FaPlay, FaUserPlus } from "react-icons/fa";
 import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
 import { BsFillMoonFill, BsSun } from "react-icons/bs";
+import {
+  AiOutlineHeart,
+  AiOutlineComment,
+  AiOutlineShareAlt,
+} from "react-icons/ai";
+import { FiMoreHorizontal } from "react-icons/fi";
 
 import "./home.css";
 const Home = () => {
@@ -21,14 +26,13 @@ const Home = () => {
     setIsDarkMode(!isDarkMode);
   };
   return (
-    // <Layout>
     <div className={isDarkMode ? "bg-dark text-light" : "bg-light text-dark"}>
       <div className="container">
         <div className="row">
-          <div className="col-md-4 pt-4">
+          <div className="col-md-3 pt-4">
             <h6 className="logo">Logo</h6>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-6 d-flex justify-content-center">
             <div className="video-card">
               <div className="blur-overlay" />
 
@@ -82,15 +86,33 @@ const Home = () => {
                 </div>
               )}
             </div>
+            <div className="justify-content-center d-flex flex-column-reverse  bg-dark ms-4 action_main">
+              <div className="text-center margin">
+                <div className="action_icon">
+                  <FiMoreHorizontal size={30} />
+                </div>
+              </div>
+              <div className="text-center margin">
+                <div className="action_icon">
+                  <AiOutlineShareAlt size={30} />
+                </div>
+                <span className="text-light">123</span>
+              </div>
+              <div className="text-center margin">
+                <div className="action_icon">
+                  <AiOutlineComment size={30} />
+                </div>
+                <span className="text-light">123</span>
+              </div>
+              <div className="text-center margin">
+                <div className="action_icon">
+                  <AiOutlineHeart size={30} />
+                </div>
+                <span className="text-light">123</span>
+              </div>
+            </div>
           </div>
-          <div className="col-md-4 d-flex justify-content-end pt-4">
-            {/* <div className="dark-mode-switch">
-              <label className="switch">
-                <input type="checkbox" onChange={handleModeToggle} />
-                <span className="slider round"></span>
-              </label>
-              <div className="dark-mode-label">Dark mode</div>
-            </div> */}
+          <div className="col-md-3 d-flex justify-content-end pt-4">
             <span
               className={`switchText ${
                 isDarkMode ? "blur-text" : ""
@@ -108,8 +130,6 @@ const Home = () => {
               <label for="checkbox" class="checkbox-label">
                 <BsFillMoonFill class=" fa-moon" size={30} />
                 <BsSun class=" fa-moon" size={30} />
-                {/* <i class="fas fa-moon"></i>
-    <i class="fas fa-sun"></i> */}
                 <span class="ball"></span>
               </label>
             </div>
@@ -124,8 +144,6 @@ const Home = () => {
         </div>
       </div>
     </div>
-
-    // </Layout>
   );
 };
 export default Home;

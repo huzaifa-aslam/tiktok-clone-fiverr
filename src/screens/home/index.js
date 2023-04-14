@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../../layout";
 import ReactPlayer from "react-player";
 import { FaPlay, FaUserPlus } from "react-icons/fa";
 import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";

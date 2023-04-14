@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
-import { FaPlay, FaUserPlus } from "react-icons/fa";
-import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
+import { FaUserPlus } from "react-icons/fa";
+import { BsPlay } from "react-icons/bs";
+import { BiVolumeFull, BiVolumeMute, BiPause } from "react-icons/bi";
 import { BsFillMoonFill, BsSun } from "react-icons/bs";
 import {
   AiOutlineHeart,
@@ -21,11 +22,12 @@ const Home = () => {
     setIsMuted(!isMuted);
   };
   const handlePlay = () => {
-    setIsPlaying(true);
+    setIsPlaying(!isPlaying);
   };
   const handleModeToggle = () => {
     setIsDarkMode(!isDarkMode);
   };
+  console.log("isPlaying", isPlaying);
   return (
     <div
       className={
@@ -41,7 +43,9 @@ const Home = () => {
           <div className="col-md-6 d-flex justify-content-center">
             <div className="video-card">
               <div className="blur-overlay" />
-
+              <div className="pl-icon">
+                {isPlaying ? <BiPause size={40} /> : <BsPlay size={40} />}
+              </div>
               <div className="mic-icon" onClick={handleMicClick}>
                 {isMuted ? (
                   <BiVolumeMute size={30} />
@@ -53,10 +57,21 @@ const Home = () => {
                 <ReactPlayer
                   muted={isMuted}
                   playing={isPlaying}
-                  url="https://www.youtube.com/watch?v=dx1YydHU_Wo"
+                  url="https://www.youtube.com/watch?v=_xzA-_L0zK4"
                   controls={false}
-                  width="100vw"
+                  width="640px"
                   height="100vh"
+                  aspectRatio="9:16"
+                  onPause={() => {
+                    handlePlay();
+                  }}
+                  onPlay={() => {
+                    handlePlay();
+                  }}
+                  onEnded={() => {
+                    handlePlay();
+                  }}
+
                   // style={{ position: "absolute", top: 0, left: 0 }}
                 />
                 <div className="video-info">
@@ -88,7 +103,7 @@ const Home = () => {
               </div>
               {!isPlaying && (
                 <div className="play-button" onClick={handlePlay}>
-                  <FaPlay className="text-light" size={50} />
+                  {/* <BsPlay className="text-light" size={30} /> */}
                 </div>
               )}
             </div>

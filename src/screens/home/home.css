@@ -31,6 +31,17 @@
   right: 0;
   z-index: 1;
   color: white;
+  cursor: pointer;
+}
+.pl-icon {
+  position: absolute;
+  top: 5%;
+  left: 6px;
+  transform: translate(-50%, -50%);
+  right: 100%;
+  z-index: 1;
+  color: white;
+  cursor: pointer;
 }
 .blur-overlay {
   position: absolute;
@@ -62,7 +73,8 @@
   display: flex;
   align-items: center;
   z-index: 1;
-  top: 635px;
+  /* top: 635px; */
+  bottom: 0;
   height: 155px;
 }
 

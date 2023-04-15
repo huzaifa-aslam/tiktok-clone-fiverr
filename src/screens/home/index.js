@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import { FaUserPlus } from "react-icons/fa";
 import profileCcon from "./../../assets/images/icon.png";
@@ -62,22 +62,22 @@ const Home = () => {
       isPlaying: false,
     },
   ]);
-  useEffect(() => {
-    let temp2 = data?.map((item, index) => {
-      if (index === 0) {
-        return {
-          ...item,
-          isPlaying: true,
-        };
-      } else {
-        return {
-          ...item,
-          isPlaying: false,
-        };
-      }
-    });
-    setData(temp2);
-  }, []);
+  // useEffect(() => {
+  //   let temp2 = data?.map((item, index) => {
+  //     if (index === 0) {
+  //       return {
+  //         ...item,
+  //         isPlaying: true,
+  //       };
+  //     } else {
+  //       return {
+  //         ...item,
+  //         isPlaying: false,
+  //       };
+  //     }
+  //   });
+  //   setData(temp2);
+  // }, []);
   window.onwheel = (e) => {
     debugger;
     let temp = [...data];

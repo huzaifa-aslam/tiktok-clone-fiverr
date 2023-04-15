@@ -1,3 +1,12 @@
+.leftCol {
+  position: fixed;
+  left: 0;
+}
+.rightCol {
+  position: fixed;
+  right: 0;
+}
+
 .video-card {
   border-radius: 25px;
   box-shadow: 2px -1px 10px 16px rgba(0, 0, 0, 0.3);
@@ -205,3 +214,35 @@
 .margin {
   margin: 15px 15px 5px 15px;
 }
+
+/* scroll area */
+
+.scroll-container,
+.scroll-area {
+  /* max-width: 850px; */
+  height: 100vh;
+  /* font-size: 60px; */
+}
+
+.scroll-container {
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.scroll-area {
+  scroll-snap-align: start;
+}
+
+.scroll-container,
+.scroll-area {
+  margin: 0 auto;
+}
+
+/* .scroll-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: #49b293;
+} */

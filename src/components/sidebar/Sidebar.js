@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export const Sidebar = ({ isDarkMode }) => {
   return (
     <div className={`sidebar ${isDarkMode ? "background_black " : "bg-light"}`}>
-      <Link to="/" className="button_2">
+      <Link to="/" className="button_2 ms-3">
         <span className="icon_2 ">
           {" "}
           <CgProfile
@@ -19,7 +19,7 @@ export const Sidebar = ({ isDarkMode }) => {
 
         <span className="text_2">Profile</span>
       </Link>
-      <Link to="/" className="button_2">
+      <Link to="/" className="button_2 ms-3">
         <span className="icon_2">
           {" "}
           <MdOutlinePermMedia
@@ -30,7 +30,7 @@ export const Sidebar = ({ isDarkMode }) => {
 
         <span className="text_2">Media</span>
       </Link>
-      <Link to="/" className="button_2">
+      <Link to="/" className="button_2 ms-3">
         <span className="icon_2">
           {" "}
           <AiOutlineSetting
@@ -39,7 +39,7 @@ export const Sidebar = ({ isDarkMode }) => {
           />
         </span>
 
-        <span className="text_2">Setting</span>
+        <span className="text_2 ">Setting</span>
       </Link>
     </div>
   );

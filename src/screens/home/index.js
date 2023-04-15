@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { FaUserPlus } from "react-icons/fa";
 import profileCcon from "./../../assets/images/icon.png";
@@ -19,12 +19,12 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import "./home.css";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 const Home = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const ref = useRef();
+  const [isPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  const [data] = useState([
+  const [data, setData] = useState([
     {
       id: 1,
       videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
@@ -35,6 +35,7 @@ const Home = () => {
       hearts: "123",
       shares: "123",
       comments: "123",
+      isPlaying: false,
     },
     {
       id: 2,
@@ -46,6 +47,7 @@ const Home = () => {
       hearts: "98",
       shares: "899",
       comments: "2987",
+      isPlaying: false,
     },
     {
       id: 3,
@@ -57,21 +59,86 @@ const Home = () => {
       hearts: "34",
       shares: "23",
       comments: "79",
+      isPlaying: false,
     },
   ]);
+  useEffect(() => {
+    let temp2 = data?.map((item, index) => {
+      if (index === 0) {
+        return {
+          ...item,
+          isPlaying: true,
+        };
+      } else {
+        return {
+          ...item,
+          isPlaying: false,
+        };
+      }
+    });
+    setData(temp2);
+  }, []);
+  window.onwheel = (e) => {
+    debugger;
+    let temp = [...data];
 
+    let temp2 = temp?.map((item) => {
+      return {
+        ...item,
+        isPlaying: false,
+      };
+    });
+    let findIndex = temp?.findIndex((item) => item?.isPlaying);
+    if (e.deltaY >= 0) {
+      // Scrolling Down with mouse
+      if (findIndex > -1) {
+        let val = findIndex + 1;
+        if (val !== -1 && val < temp2?.length) {
+          temp2[findIndex + 1].isPlaying = true;
+
+          setData(temp2);
+        }
+      }
+      console.log("Scrolled donw%");
+    } else {
+      if (findIndex > -1) {
+        let val = findIndex - 1;
+        if (val !== -1 && val < temp2?.length) {
+          temp2[findIndex - 1].isPlaying = true;
+
+          setData(temp2);
+        }
+      }
+    }
+  };
+  console.log("data", data);
   const handleMicClick = () => {
     setIsMuted(!isMuted);
   };
-  const handlePlay = () => {
-    setIsPlaying(!isPlaying);
+  const handlePlay = (itemId) => {
+    let temp = [...data];
+    let temp2 = temp?.map((item) => {
+      return {
+        ...item,
+        isPlaying: false,
+      };
+    });
+    let findItem = temp2?.find((item) => item.id === itemId);
+    if (findItem) {
+      findItem.isPlaying = !findItem.isPlaying;
+    }
+    setData(temp2);
+    // setIsPlaying(!isPlaying);
   };
   const handleModeToggle = () => {
     setIsDarkMode(!isDarkMode);
   };
   const handleVideoEnd = () => {
-    setCurrentVideoIndex((prevIndex) => prevIndex + 1);
+    console.log("end");
+
+    // setCurrentVideoIndex((prevIndex) => prevIndex + 1);
   };
+  console.log("ref", ref);
   return (
     <div
       className={`scroll-container ${
@@ -103,8 +170,9 @@ const Home = () => {
                     <div className="player-wrapper">
                       <ReactPlayer
                         muted={isMuted}
-                        // playing={isPlaying}
-                        playing
+                        playing={item?.isPlaying}
+                        isPlaying={item?.isPlaying}
+                        // playing
                         url={item.videoURL}
                         controls={false}
                         width="100wh"
@@ -112,15 +180,15 @@ const Home = () => {
                         // height="846"
                         // width="472"
                         // aspectRatio="9:16"
-                        // onEnded={() => {
-                        //   handleVideoEnd();
-                        // }}
+                        onEnded={() => {
+                          handleVideoEnd();
+                        }}
                         // onPause={() => {
                         //   handlePlay();
                         // }}
-                        // onPlay={() => {
-                        //   handlePlay();
-                        // }}
+                        onPlay={() => {
+                          handlePlay(item?.id);
+                        }}
                         // onEnded={() => {
                         //   handlePlay();
                         // }}

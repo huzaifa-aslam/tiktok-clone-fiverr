@@ -176,8 +176,8 @@ const Home = () => {
                         url={item.videoURL}
                         controls={false}
                         width="100wh"
-                        height="900px"
-                        // height="846"
+                        // height="800px"
+                        height="846px"
                         // width="472"
                         // aspectRatio="9:16"
                         onEnded={() => {

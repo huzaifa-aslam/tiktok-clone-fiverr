@@ -22,7 +22,19 @@ const Home = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
-
+  const [data] = useState([
+    {
+      id: 1,
+      videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      profileURL: profileCcon,
+      name: "John Deo",
+      time: "4 days ago",
+      description: "Video Description",
+      hearts: "123",
+      shares: "123",
+      comments: "123",
+    },
+  ]);
   const handleMicClick = () => {
     setIsMuted(!isMuted);
   };
@@ -32,7 +44,6 @@ const Home = () => {
   const handleModeToggle = () => {
     setIsDarkMode(!isDarkMode);
   };
-  console.log("isPlaying", isPlaying);
   return (
     <div
       className={
@@ -46,98 +57,113 @@ const Home = () => {
             <h6 className="logo">Logo</h6>
           </div>
           <div className="col-md-6 d-flex justify-content-center">
-            <div className="video-card">
-              <div className="blur-overlay" />
-              {/* <div className="pl-icon">
+            {data?.map((item) => {
+              return (
+                <>
+                  <div className="video-card">
+                    <div className="blur-overlay" />
+                    {/* <div className="pl-icon">
                 {isPlaying ? <BiPause size={40} /> : <BsPlay size={40} />}
               </div> */}
-              <div className="mic-icon" onClick={handleMicClick}>
-                {isMuted ? (
-                  <BiVolumeMute size={30} />
-                ) : (
-                  <BiVolumeFull size={30} />
-                )}
-              </div>
-              <div className="player-wrapper">
-                <ReactPlayer
-                  muted={isMuted}
-                  playing={isPlaying}
-                  url="https://www.youtube.com/shorts/7npz-I3WIGw"
-                  controls={false}
-                  width="100wh"
-                  height="100vh"
-                  // aspectRatio="9:16"
-                  onPause={() => {
-                    handlePlay();
-                  }}
-                  onPlay={() => {
-                    handlePlay();
-                  }}
-                  onEnded={() => {
-                    handlePlay();
-                  }}
+                    <div className="mic-icon" onClick={handleMicClick}>
+                      {isMuted ? (
+                        <BiVolumeMute size={30} />
+                      ) : (
+                        <BiVolumeFull size={30} />
+                      )}
+                    </div>
+                    <div className="player-wrapper">
+                      <ReactPlayer
+                        muted={isMuted}
+                        playing={isPlaying}
+                        url={item?.videoURL}
+                        controls={false}
+                        width="100wh"
+                        // height="100vh"
+                        height="900px"
+                        // width="472px"
+                        // aspectRatio="9:16"
+                        onPause={() => {
+                          handlePlay();
+                        }}
+                        onPlay={() => {
+                          handlePlay();
+                        }}
+                        onEnded={() => {
+                          handlePlay();
+                        }}
 
-                  // style={{ position: "absolute", top: 0, left: 0 }}
-                />
-                <div className="video-info">
-                  <div className="profile-image">
-                    <img
-                      style={{ height: "47px" }}
-                      src={profileCcon}
-                      alt="Profile"
-                    />
-                  </div>
-                  <div className="profile-info">
-                    <div className={`d-flex justify-content-between`}>
-                      <div>
-                        <div className="profile-name">John Doe</div>
-                        <div className="profile-day">4 days ago</div>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          className="btn btn-outline-light rounded-pill "
-                        >
-                          <FaUserPlus className="follow" />
-                          Follow
-                        </button>
+                        // style={{ position: "absolute", top: 0, left: 0 }}
+                      />
+                      <div className="video-info">
+                        <div className="profile-image">
+                          <img
+                            style={{ height: "47px" }}
+                            src={item?.profileURL}
+                            alt="Profile"
+                          />
+                        </div>
+                        <div className="profile-info">
+                          <div className={`d-flex justify-content-between`}>
+                            <div>
+                              <div className="profile-name">{item?.name}</div>
+                              <div className="profile-day">{item?.time}</div>
+                            </div>
+                            <div>
+                              <button
+                                type="button"
+                                className="btn btn-outline-light rounded-pill "
+                              >
+                                <FaUserPlus className="follow" />
+                                Follow
+                              </button>
+                            </div>
+                          </div>
+                          <div className="profile-desc">
+                            {item?.description}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="profile-desc">Video Description</div>
+                    {!isPlaying && (
+                      <div className="play-button" onClick={handlePlay}>
+                        {/* <BsPlay className="text-light" size={30} /> */}
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div>
-              {!isPlaying && (
-                <div className="play-button" onClick={handlePlay}>
-                  {/* <BsPlay className="text-light" size={30} /> */}
-                </div>
-              )}
-            </div>
-            <div className="justify-content-center d-flex flex-column-reverse  bg-dark ms-4 action_main">
-              <div className="text-center margin">
-                <div className="action_icon">
-                  <FiMoreHorizontal size={30} />
-                </div>
-              </div>
-              <div className="text-center margin">
-                <div className="action_icon">
-                  <AiOutlineShareAlt size={30} />
-                </div>
-                <span className="text-light">123</span>
-              </div>
-              <div className="text-center margin">
-                <div className="action_icon">
-                  <AiOutlineComment size={30} />
-                </div>
-                <span className="text-light">123</span>
-              </div>
-              <div className="text-center margin">
-                <div className="action_icon">
-                  <AiOutlineHeart size={30} />
-                </div>
-                <span className="text-light">123</span>
-              </div>
-            </div>
+
+                  <div
+                    className={`${
+                      isDarkMode ? "background_black " : "bg-light"
+                    } justify-content-center d-flex  ms-4 action_main`}
+                  >
+                    <div className="text-center margin">
+                      <div className="action_icon">
+                        <AiOutlineHeart size={30} />
+                      </div>
+                      <span>{item?.hearts}</span>
+                    </div>
+                    <div className="text-center margin">
+                      <div className="action_icon">
+                        <AiOutlineComment size={30} />
+                      </div>
+                      <span>{item?.comments}</span>
+                    </div>
+                    <div className="text-center margin">
+                      <div className="action_icon">
+                        <AiOutlineShareAlt size={30} />
+                      </div>
+                      <span>{item?.shares}</span>
+                    </div>
+                    <div className="text-center margin">
+                      <div className="action_icon">
+                        <FiMoreHorizontal size={30} />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
           </div>
           <div className="col-md-3 d-flex justify-content-end pt-4">
             <span

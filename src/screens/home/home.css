@@ -102,7 +102,7 @@
   align-items: center;
   z-index: 1;
   /* top: 635px; */
-  bottom: 48px;
+  bottom: 0px;
   height: 155px;
 }
 

@@ -371,6 +371,7 @@ const Home = () => {
                           }}
                         /> */}
                         <VideoCard
+                          isMute={isMuted}
                           key={index}
                           index={index}
                           videoURL={item.videoURL}

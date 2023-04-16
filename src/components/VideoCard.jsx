@@ -6,7 +6,6 @@ const VideoCard = ({ index, videoURL, lastVideoIndex, isMute }) => {
   const video = useRef();
   const isInViewport = useIsInViewport(video);
   const [loadNewVidsAt, setloadNewVidsAt] = useState(lastVideoIndex);
-
   if (isInViewport) {
     setTimeout(() => {
       video.current.play();
@@ -32,7 +31,6 @@ const VideoCard = ({ index, videoURL, lastVideoIndex, isMute }) => {
       video.current.pause();
     }
   }, [isInViewport]);
-
   return (
     <div className="slider-children">
       <video

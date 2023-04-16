@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import ReactPlayer from "react-player";
+import React, { useState, useRef } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import profileCcon from "./../../assets/images/icon.png";
 // import { BsPlay } from "react-icons/bs";
@@ -20,7 +19,6 @@ import video_2 from "./../../assets/videos/video-2.mp4";
 import video_3 from "./../../assets/videos/video-3.mp4";
 import video_4 from "./../../assets/videos/video-4.mp4";
 import video_5 from "./../../assets/videos/video-5.mp4";
-import VideoScroll from "./../../screens/player/player";
 
 import "./home.css";
 import { Sidebar } from "../../components/sidebar/Sidebar";
@@ -111,6 +109,7 @@ const Home = () => {
     },
   ]);
   const [currentVideoId, setCurrentVideoId] = useState(null);
+
   const videoRefs = useRef([]);
   // useEffect(() => {
   //   if (currentVideoId && data?.length) {

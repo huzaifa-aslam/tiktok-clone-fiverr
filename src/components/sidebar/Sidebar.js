@@ -13,7 +13,7 @@ export const Sidebar = ({ isDarkMode }) => {
           {" "}
           <CgProfile
             className={` ${isDarkMode ? "text_white " : ""}`}
-            size={25}
+            size={30}
           />
         </span>
 
@@ -24,7 +24,7 @@ export const Sidebar = ({ isDarkMode }) => {
           {" "}
           <MdOutlinePermMedia
             className={` ${isDarkMode ? "text_white " : ""}`}
-            size={25}
+            size={30}
           />
         </span>
 
@@ -35,7 +35,7 @@ export const Sidebar = ({ isDarkMode }) => {
           {" "}
           <AiOutlineSetting
             className={` ${isDarkMode ? "text_white " : ""}`}
-            size={25}
+            size={30}
           />
         </span>
 

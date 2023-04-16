@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { FaUserPlus } from "react-icons/fa";
 import profileCcon from "./../../assets/images/icon.png";
@@ -15,6 +15,11 @@ import {
   AiOutlineShareAlt,
 } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
+import video_1 from "./../../assets/videos/video-1.mp4";
+import video_2 from "./../../assets/videos/video-2.mp4";
+import video_3 from "./../../assets/videos/video-3.mp4";
+import video_4 from "./../../assets/videos/video-4.mp4";
+import video_5 from "./../../assets/videos/video-5.mp4";
 
 import "./home.css";
 import { Sidebar } from "../../components/sidebar/Sidebar";
@@ -27,7 +32,8 @@ const Home = () => {
   const [data, setData] = useState([
     {
       id: 1,
-      videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      videoURL: video_1,
       profileURL: profileCcon,
       name: "John Deo",
       time: "4 days ago",
@@ -39,7 +45,8 @@ const Home = () => {
     },
     {
       id: 2,
-      videoURL: "https://www.youtube.com/shorts/4VX5yg1EUQI",
+      // videoURL: "https://www.youtube.com/shorts/4VX5yg1EUQI",
+      videoURL: video_2,
       profileURL: profileCcon,
       name: "John john",
       time: "4 days ago",
@@ -51,7 +58,47 @@ const Home = () => {
     },
     {
       id: 3,
-      videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      videoURL: video_3,
+      profileURL: profileCcon,
+      name: "John",
+      time: "7 days ago",
+      description: "Video Description",
+      hearts: "34",
+      shares: "23",
+      comments: "79",
+      isPlaying: false,
+    },
+    {
+      id: 3,
+      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      videoURL: video_3,
+      profileURL: profileCcon,
+      name: "John",
+      time: "7 days ago",
+      description: "Video Description",
+      hearts: "34",
+      shares: "23",
+      comments: "79",
+      isPlaying: false,
+    },
+    {
+      id: 4,
+      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      videoURL: video_4,
+      profileURL: profileCcon,
+      name: "John",
+      time: "7 days ago",
+      description: "Video Description",
+      hearts: "34",
+      shares: "23",
+      comments: "79",
+      isPlaying: false,
+    },
+    {
+      id: 5,
+      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
+      videoURL: video_5,
       profileURL: profileCcon,
       name: "John",
       time: "7 days ago",
@@ -62,55 +109,99 @@ const Home = () => {
       isPlaying: false,
     },
   ]);
-  // useEffect(() => {
-  //   let temp2 = data?.map((item, index) => {
-  //     if (index === 0) {
-  //       return {
-  //         ...item,
-  //         isPlaying: true,
-  //       };
-  //     } else {
-  //       return {
-  //         ...item,
-  //         isPlaying: false,
-  //       };
-  //     }
-  //   });
-  //   setData(temp2);
-  // }, []);
-  window.onwheel = (e) => {
-    debugger;
-    let temp = [...data];
+  const [currentVideoId, setCurrentVideoId] = useState(null);
+  const videoRefs = useRef([]);
 
-    let temp2 = temp?.map((item) => {
-      return {
-        ...item,
-        isPlaying: false,
-      };
-    });
-    let findIndex = temp?.findIndex((item) => item?.isPlaying);
-    if (e.deltaY >= 0) {
-      // Scrolling Down with mouse
-      if (findIndex > -1) {
-        let val = findIndex + 1;
-        if (val !== -1 && val < temp2?.length) {
-          temp2[findIndex + 1].isPlaying = true;
-
-          setData(temp2);
-        }
-      }
-      console.log("Scrolled donw%");
-    } else {
-      if (findIndex > -1) {
-        let val = findIndex - 1;
-        if (val !== -1 && val < temp2?.length) {
-          temp2[findIndex - 1].isPlaying = true;
-
-          setData(temp2);
-        }
-      }
+  useEffect(() => {
+    if (currentVideoId && data?.length) {
+      // debugger;
+      let temp = [...data]?.map((item) => {
+        return {
+          ...item,
+          isPlaying: false,
+        };
+      });
+      // let it= temp?.find((item) => item?.id===currentVideoId)
+      let ind = temp?.findIndex((item) => item?.id === currentVideoId);
+      temp[ind].isPlaying = true;
+      console.log("ind", ind);
+      setData(temp);
     }
+  }, [currentVideoId]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const videoId = parseInt(entry.target.dataset.id, 10);
+            setCurrentVideoId(videoId);
+            // let temp = [...data]?.map((item) => {
+            //   return {
+            //     ...item,
+            //     isPlaying: false,
+            //   };
+            // });
+
+            // temp[videoId].isPlaying = true;
+            // setData(temp);
+          }
+        });
+      },
+      { root: null, rootMargin: "0px", threshold: 0.5 }
+    );
+
+    videoRefs.current.forEach((ref) => {
+      observer.observe(ref);
+    });
+
+    return () => {
+      videoRefs.current.forEach((ref) => {
+        observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  const handleVideoRef = (ref, index) => {
+    // debugger;
+    console.log("index", index);
+    // console.log("currentVideoId", currentVideoId);
+
+    videoRefs.current[index] = ref;
   };
+  console.log("currentVideoId", currentVideoId);
+  // window.onwheel = (e) => {
+  //   debugger;
+  //   let temp = [...data];
+
+  //   let temp2 = temp?.map((item) => {
+  //     return {
+  //       ...item,
+  //       isPlaying: false,
+  //     };
+  //   });
+  //   let findIndex = temp?.findIndex((item) => item?.isPlaying);
+  //   if (e.deltaY >= 0) {
+  //     // Scrolling Down with mouse
+  //     if (findIndex > -1) {
+  //       let val = findIndex + 1;
+  //       if (val !== -1 && val < temp2?.length) {
+  //         temp2[findIndex + 1].isPlaying = true;
+
+  //         setData(temp2);
+  //       }
+  //     }
+  //     console.log("Scrolled donw%");
+  //   } else {
+  //     if (findIndex > -1) {
+  //       let val = findIndex - 1;
+  //       if (val !== -1 && val < temp2?.length) {
+  //         temp2[findIndex - 1].isPlaying = true;
+
+  //         setData(temp2);
+  //       }
+  //     }
+  //   }
+  // };
   console.log("data", data);
   const handleMicClick = () => {
     setIsMuted(!isMuted);
@@ -142,7 +233,7 @@ const Home = () => {
   return (
     <div
       className={`scroll-container ${
-        isDarkMode ? "bg-dark text-light" : "light-background text-dark"
+        isDarkMode ? "dark-bg-color text-light" : "light-background text-dark"
       }`}
     >
       <div className="container">
@@ -154,9 +245,23 @@ const Home = () => {
           <div className="col-md-6  ">
             {data?.map((item, index) => {
               return (
-                <div className="d-flex justify-content-center scroll-area">
-                  <div key={index} className="video-card">
-                    <div className="blur-overlay" />
+                <div
+                  data-id={item?.id}
+                  ref={(ref) => handleVideoRef(ref, index)}
+                  className="d-flex justify-content-center scroll-area"
+                >
+                  <div
+                    key={index}
+                    className={`video-card
+                  
+                  ${
+                    isDarkMode
+                      ? "video-card-dark-shadow"
+                      : "video-card-light-shadow"
+                  }
+                  `}
+                  >
+                    {/* <div className="blur-overlay" /> */}
                     {/* <div className="pl-icon">
                 {isPlaying ? <BiPause size={40} /> : <BsPlay size={40} />}
               </div> */}
@@ -177,7 +282,7 @@ const Home = () => {
                         controls={false}
                         width="100wh"
                         // height="800px"
-                        height="846px"
+                        height="100vh"
                         // width="472"
                         // aspectRatio="9:16"
                         onEnded={() => {
@@ -233,9 +338,9 @@ const Home = () => {
                   </div>
 
                   <div
-                    className={`${
-                      isDarkMode ? "background_black " : "bg-light"
-                    } justify-content-center d-flex  ms-4 action_main`}
+                    className={`
+                    
+                     justify-content-center d-flex  ms-4 action_main`}
                   >
                     <div className="text-center margin">
                       <div className="action_icon">

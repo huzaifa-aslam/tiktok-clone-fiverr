@@ -1,9 +1,9 @@
 .sidebar {
   position: fixed;
   left: 0;
-  top: 50%; /* Set the top position to 50% */
-  transform: translateY(-50%); /* Use transform to center vertically */
-  height: 300px; /* Set the height to 300px */
+  top: 50%;
+  transform: translateY(-50%);
+  height: 300px;
   width: 80px;
   /* background-color: #f5f5f5; */
   z-index: 9999;
@@ -13,6 +13,7 @@
   justify-content: space-evenly;
   /* align-items: center; */
   /* overflow-y: auto; */
+  box-shadow: -1px -1px 10px 3px #a79fc180;
 }
 .text_white {
   color: white;

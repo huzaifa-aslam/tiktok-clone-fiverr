@@ -1,211 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
-import ReactPlayer from "react-player";
-import { FaUserPlus } from "react-icons/fa";
-import profileCcon from "./../../assets/images/icon.png";
-// import { BsPlay } from "react-icons/bs";
-import {
-  BiVolumeFull,
-  BiVolumeMute,
-  // BiPause
-} from "react-icons/bi";
-import { BsFillMoonFill, BsSun } from "react-icons/bs";
-import {
-  AiOutlineHeart,
-  AiOutlineComment,
-  AiOutlineShareAlt,
-} from "react-icons/ai";
-import { FiMoreHorizontal } from "react-icons/fi";
-import video_1 from "./../../assets/videos/video-1.mp4";
-import video_2 from "./../../assets/videos/video-2.mp4";
-import video_3 from "./../../assets/videos/video-3.mp4";
-import video_4 from "./../../assets/videos/video-4.mp4";
-import video_5 from "./../../assets/videos/video-5.mp4";
-import VideoScroll from "./../../screens/player/player";
-
-import "./home.css";
-import { Sidebar } from "../../components/sidebar/Sidebar";
-import VideoCard from "../../components/VideoCard";
-const Home = () => {
-  const [isPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const [data, setData] = useState([
-    {
-      id: 1,
-      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
-      videoURL: video_1,
-      profileURL: profileCcon,
-      name: "John Deo",
-      time: "4 days ago",
-      description: "Video Description",
-      hearts: "123",
-      shares: "123",
-      comments: "123",
-      isPlaying: false,
-    },
-    {
-      id: 2,
-      // videoURL: "https://www.youtube.com/shorts/4VX5yg1EUQI",
-      videoURL: video_2,
-      profileURL: profileCcon,
-      name: "John john",
-      time: "4 days ago",
-      description: "Video Description",
-      hearts: "98",
-      shares: "899",
-      comments: "2987",
-      isPlaying: false,
-    },
-    {
-      id: 3,
-      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
-      videoURL: video_3,
-      profileURL: profileCcon,
-      name: "John",
-      time: "7 days ago",
-      description: "Video Description",
-      hearts: "34",
-      shares: "23",
-      comments: "79",
-      isPlaying: false,
-    },
-    {
-      id: 3,
-      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
-      videoURL: video_3,
-      profileURL: profileCcon,
-      name: "John",
-      time: "7 days ago",
-      description: "Video Description",
-      hearts: "34",
-      shares: "23",
-      comments: "79",
-      isPlaying: false,
-    },
-    {
-      id: 4,
-      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
-      videoURL: video_4,
-      profileURL: profileCcon,
-      name: "John",
-      time: "7 days ago",
-      description: "Video Description",
-      hearts: "34",
-      shares: "23",
-      comments: "79",
-      isPlaying: false,
-    },
-    {
-      id: 5,
-      // videoURL: "https://www.youtube.com/shorts/7npz-I3WIGw",
-      videoURL: video_5,
-      profileURL: profileCcon,
-      name: "John",
-      time: "7 days ago",
-      description: "Video Description",
-      hearts: "34",
-      shares: "23",
-      comments: "79",
-      isPlaying: false,
-    },
-  ]);
-  const [currentVideoId, setCurrentVideoId] = useState(null);
-  const videoRefs = useRef([]);
-  // useEffect(() => {
-  //   if (currentVideoId && data?.length) {
-  //     let temp = [...data]?.map((item) => {
-  //       return {
-  //         ...item,
-  //         isPlaying: false,
-  //       };
-  //     });
-  //     let ind = temp?.findIndex((item) => item?.id === currentVideoId);
-  //     temp[ind].isPlaying = true;
-  //     setData(temp);
-  //   }
-  // }, [currentVideoId]);
-  // useEffect(() => {
-  //   let videoId;
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) {
-  //           videoId = parseInt(entry.target.dataset.id, 10);
-  //           setCurrentVideoId(videoId);
-  //         }
-  //       });
-  //     },
-  //     { root: null, rootMargin: "0px", threshold: 0.5 }
-  //   );
-
-  //   videoRefs.current.forEach((ref) => {
-  //     observer.observe(ref);
-  //   });
-
-  //   return () => {
-  //     videoRefs.current.forEach((ref) => {
-  //       observer.unobserve(ref);
-  //     });
-  //   };
-  // }, []);
-
-  const handleVideoRef = (ref, index) => {
-    videoRefs.current[index] = ref;
-  };
-
-  console.log("data", data);
-  const handleMicClick = () => {
-    setIsMuted(!isMuted);
-  };
-  const handlePlay = (itemId) => {
-    let temp = [...data];
-    let temp2 = temp?.map((item) => {
-      return {
-        ...item,
-        isPlaying: false,
-      };
-    });
-    let findItem = temp2?.find((item) => item.id === itemId);
-    if (findItem) {
-      findItem.isPlaying = !findItem.isPlaying;
-    }
-    setData(temp2);
-  };
-  const handlePause = (itemId) => {
-    let temp = [...data];
-
-    let findItem = temp?.find((item) => item.id === itemId);
-    if (findItem) {
-      findItem.isPlaying = !findItem.isPlaying;
-    }
-    setData(temp);
-  };
-  const handleModeToggle = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-  const handleVideoEnd = () => {
-    // setCurrentVideoIndex((prevIndex) => prevIndex + 1);
-  };
-  return (
-    <div
-      className={`scroll-container ${
-        isDarkMode ? "dark-bg-color text-light" : "light-background text-dark"
-      }`}
-    >
-      <div className="container">
-        <Sidebar isDarkMode={isDarkMode} />
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-3 pt-4 leftCol text-center">
-            <h6 className="logo">Logo</h6>
-          </div>
-          <div className="col-md-6  ">
-            {data?.map((item, index) => {
+{data?.map((item, index) => {
               if (index === 0) {
                 return (
                   <div
                     data-id={item?.id}
-                    // ref={(ref) => handleVideoRef(ref, index)}
+                    ref={(ref) => handleVideoRef(ref, index)}
                     className="d-flex justify-content-center scroll-area"
                   >
                     <div
@@ -219,6 +17,10 @@ const Home = () => {
                     }
                     `}
                     >
+                      {/* <div className="blur-overlay" /> */}
+                      {/* <div className="pl-icon">
+                  {isPlaying ? <BiPause size={40} /> : <BsPlay size={40} />}
+                </div> */}
                       <div
                         className="mic-icon mic-icon-top"
                         onClick={handleMicClick}
@@ -230,15 +32,19 @@ const Home = () => {
                         )}
                       </div>
                       <div className="player-wrapper">
-                        {/* <ReactPlayer
-                        
+                        <ReactPlayer
+                          // className="custom-player"
                           muted={isMuted}
                           playing={item?.isPlaying}
                           isPlaying={item?.isPlaying}
+                          // playing
                           url={item.videoURL}
                           controls={false}
                           width="100wh"
+                          // height="800px"
                           height="100%"
+                          // width="472"
+                          // aspectRatio="9:16"
                           onEnded={() => {
                             handleVideoEnd();
                           }}
@@ -248,14 +54,11 @@ const Home = () => {
                           onPlay={() => {
                             handlePlay(item?.id);
                           }}
-                        /> */}
+                          // onEnded={() => {
+                          //   handlePlay();
+                          // }}
 
-                        <VideoCard
-                          isMute={isMuted}
-                          key={index}
-                          index={index}
-                          videoURL={item.videoURL}
-                          lastVideoIndex={data.length - 1}
+                          // style={{ position: "absolute", top: 0, left: 0 }}
                         />
                         <div className="video-info">
                           <div className="profile-image">
@@ -288,7 +91,9 @@ const Home = () => {
                         </div>
                       </div>
                       {!isPlaying && (
-                        <div className="play-button" onClick={handlePlay}></div>
+                        <div className="play-button" onClick={handlePlay}>
+                          {/* <BsPlay className="text-light" size={30} /> */}
+                        </div>
                       )}
                     </div>
 
@@ -327,7 +132,7 @@ const Home = () => {
                 return (
                   <div
                     data-id={item?.id}
-                    // ref={(ref) => handleVideoRef(ref, index)}
+                    ref={(ref) => handleVideoRef(ref, index)}
                     className="d-flex justify-content-center scroll-area"
                   >
                     <div
@@ -341,6 +146,10 @@ const Home = () => {
                     }
                     `}
                     >
+                      {/* <div className="blur-overlay" /> */}
+                      {/* <div className="pl-icon">
+                  {isPlaying ? <BiPause size={40} /> : <BsPlay size={40} />}
+                </div> */}
                       <div
                         className="mic-icon mic-icon-rest"
                         onClick={handleMicClick}
@@ -352,14 +161,18 @@ const Home = () => {
                         )}
                       </div>
                       <div className="player-wrapper">
-                        {/* <ReactPlayer
+                        <ReactPlayer
                           muted={isMuted}
                           playing={item?.isPlaying}
                           isPlaying={item?.isPlaying}
+                          // playing
                           url={item.videoURL}
                           controls={false}
                           width="100wh"
+                          // height="800px"
                           height="100%"
+                          // width="472"
+                          // aspectRatio="9:16"
                           onEnded={() => {
                             handleVideoEnd();
                           }}
@@ -369,12 +182,11 @@ const Home = () => {
                           onPlay={() => {
                             handlePlay(item?.id);
                           }}
-                        /> */}
-                        <VideoCard
-                          key={index}
-                          index={index}
-                          videoURL={item.videoURL}
-                          lastVideoIndex={data.length - 1}
+                          // onEnded={() => {
+                          //   handlePlay();
+                          // }}
+
+                          // style={{ position: "absolute", top: 0, left: 0 }}
                         />
                         <div className="video-info">
                           <div className="profile-image">
@@ -407,7 +219,9 @@ const Home = () => {
                         </div>
                       </div>
                       {!isPlaying && (
-                        <div className="play-button" onClick={handlePlay}></div>
+                        <div className="play-button" onClick={handlePlay}>
+                          {/* <BsPlay className="text-light" size={30} /> */}
+                        </div>
                       )}
                     </div>
 
@@ -444,40 +258,3 @@ const Home = () => {
                 );
               }
             })}
-            {/* <VideoScroll /> */}
-          </div>
-          <div className="col-md-3 d-flex  pt-4 rightCol">
-            <span
-              className={`switchText ${
-                isDarkMode ? "blur-text" : ""
-              } d-inline-block pe-3`}
-            >
-              Light
-            </span>
-            <div>
-              <input
-                onChange={handleModeToggle}
-                type="checkbox"
-                className="checkbox"
-                id="checkbox"
-              />
-              <label htmlFor="checkbox" className="checkbox-label">
-                <BsFillMoonFill className=" fa-moon" size={30} />
-                <BsSun className=" fa-moon" size={30} />
-                <span className="ball"></span>
-              </label>
-            </div>
-            <span
-              className={`switchText ${
-                isDarkMode ? "" : "blur-text-dark"
-              } d-inline-block ps-3`}
-            >
-              Dark
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-export default Home;

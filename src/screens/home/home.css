@@ -12,8 +12,15 @@
 
   overflow: hidden;
   width: 400px;
-  height: 94vh;
+  height: 90vh;
   position: relative;
+}
+.custom-player {
+  height: 100%;
+}
+
+.top {
+  top: -30px;
 }
 .video-card-light-shadow {
   box-shadow: 0px 1px 10px 13px #a79fc15c;
@@ -39,7 +46,7 @@
 
 .mic-icon {
   position: absolute;
-  top: 5%;
+  /* top: 5%; */
   left: 92%;
   transform: translate(-50%, -50%);
   right: 0;
@@ -47,6 +54,13 @@
   color: white;
   cursor: pointer;
 }
+.mic-icon-top {
+  top: 5%;
+}
+.mic-icon-rest {
+  top: 8%;
+}
+
 .pl-icon {
   position: absolute;
   top: 5%;
@@ -203,9 +217,14 @@
   /* margin-top: 373px; */
   /* border-radius: 24px; */
   position: relative;
-  top: 49%;
   flex-direction: column !important;
   /* background-color: #0000005e !important; */
+}
+.action_main_first {
+  top: 43%;
+}
+.action_main_rest {
+  top: 39%;
 }
 .action_icon {
   background-color: #80808040;

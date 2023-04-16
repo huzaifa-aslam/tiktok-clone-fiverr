@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import profileCcon from "./../../assets/images/icon.png";
 
-import VideoCard from "./../../components/VideoCard";
+import VideoCard from "../../components/videoCard/VideoCard";
 import video_1 from "./../../assets/videos/video-1.mp4";
 import video_2 from "./../../assets/videos/video-2.mp4";
 import video_3 from "./../../assets/videos/video-3.mp4";

@@ -22,7 +22,7 @@ import video_5 from "./../../assets/videos/video-5.mp4";
 
 import "./home.css";
 import { Sidebar } from "../../components/sidebar/Sidebar";
-import VideoCard from "../../components/VideoCard";
+import VideoCard from "../../components/videoCard/VideoCard";
 const Home = () => {
   const [isPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);

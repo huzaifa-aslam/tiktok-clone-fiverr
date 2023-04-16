@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 
-import useIsInViewport from "../hooks/useIsInViewport";
+import useIsInViewport from "../../hooks/useIsInViewport";
 
 const VideoCard = ({ index, videoURL, lastVideoIndex, isMute }) => {
   const video = useRef();

@@ -108,52 +108,7 @@ const Home = () => {
       isPlaying: false,
     },
   ]);
-  const [currentVideoId, setCurrentVideoId] = useState(null);
 
-  const videoRefs = useRef([]);
-  // useEffect(() => {
-  //   if (currentVideoId && data?.length) {
-  //     let temp = [...data]?.map((item) => {
-  //       return {
-  //         ...item,
-  //         isPlaying: false,
-  //       };
-  //     });
-  //     let ind = temp?.findIndex((item) => item?.id === currentVideoId);
-  //     temp[ind].isPlaying = true;
-  //     setData(temp);
-  //   }
-  // }, [currentVideoId]);
-  // useEffect(() => {
-  //   let videoId;
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) {
-  //           videoId = parseInt(entry.target.dataset.id, 10);
-  //           setCurrentVideoId(videoId);
-  //         }
-  //       });
-  //     },
-  //     { root: null, rootMargin: "0px", threshold: 0.5 }
-  //   );
-
-  //   videoRefs.current.forEach((ref) => {
-  //     observer.observe(ref);
-  //   });
-
-  //   return () => {
-  //     videoRefs.current.forEach((ref) => {
-  //       observer.unobserve(ref);
-  //     });
-  //   };
-  // }, []);
-
-  const handleVideoRef = (ref, index) => {
-    videoRefs.current[index] = ref;
-  };
-
-  console.log("data", data);
   const handleMicClick = () => {
     setIsMuted(!isMuted);
   };
@@ -171,21 +126,11 @@ const Home = () => {
     }
     setData(temp2);
   };
-  const handlePause = (itemId) => {
-    let temp = [...data];
 
-    let findItem = temp?.find((item) => item.id === itemId);
-    if (findItem) {
-      findItem.isPlaying = !findItem.isPlaying;
-    }
-    setData(temp);
-  };
   const handleModeToggle = () => {
     setIsDarkMode(!isDarkMode);
   };
-  const handleVideoEnd = () => {
-    // setCurrentVideoIndex((prevIndex) => prevIndex + 1);
-  };
+
   return (
     <div
       className={`scroll-container ${
@@ -204,7 +149,6 @@ const Home = () => {
                 return (
                   <div
                     data-id={item?.id}
-                    // ref={(ref) => handleVideoRef(ref, index)}
                     className="d-flex justify-content-center scroll-area"
                   >
                     <div
@@ -229,26 +173,6 @@ const Home = () => {
                         )}
                       </div>
                       <div className="player-wrapper">
-                        {/* <ReactPlayer
-                        
-                          muted={isMuted}
-                          playing={item?.isPlaying}
-                          isPlaying={item?.isPlaying}
-                          url={item.videoURL}
-                          controls={false}
-                          width="100wh"
-                          height="100%"
-                          onEnded={() => {
-                            handleVideoEnd();
-                          }}
-                          onPause={() => {
-                            handlePause(item?.id);
-                          }}
-                          onPlay={() => {
-                            handlePlay(item?.id);
-                          }}
-                        /> */}
-
                         <VideoCard
                           isMute={isMuted}
                           key={index}
@@ -326,7 +250,6 @@ const Home = () => {
                 return (
                   <div
                     data-id={item?.id}
-                    // ref={(ref) => handleVideoRef(ref, index)}
                     className="d-flex justify-content-center scroll-area"
                   >
                     <div
@@ -351,24 +274,6 @@ const Home = () => {
                         )}
                       </div>
                       <div className="player-wrapper">
-                        {/* <ReactPlayer
-                          muted={isMuted}
-                          playing={item?.isPlaying}
-                          isPlaying={item?.isPlaying}
-                          url={item.videoURL}
-                          controls={false}
-                          width="100wh"
-                          height="100%"
-                          onEnded={() => {
-                            handleVideoEnd();
-                          }}
-                          onPause={() => {
-                            handlePause(item?.id);
-                          }}
-                          onPlay={() => {
-                            handlePlay(item?.id);
-                          }}
-                        /> */}
                         <VideoCard
                           isMute={isMuted}
                           key={index}
@@ -444,7 +349,6 @@ const Home = () => {
                 );
               }
             })}
-            {/* <VideoScroll /> */}
           </div>
           <div className="col-md-3 d-flex  pt-4 rightCol">
             <span

@@ -92,11 +92,6 @@ function App() {
   ]);
   const [videosLoaded, setvideosLoaded] = useState(false);
 
-  const randomQuery = () => {
-    const queries = ["Food", "Random", "Business", "Travel"];
-    return queries[Math.floor(Math.random() * queries.length)];
-  };
-
   const getVideos = (length) => {
     setvideosLoaded(true);
   };

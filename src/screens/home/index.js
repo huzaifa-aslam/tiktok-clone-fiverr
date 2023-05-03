@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import profileCcon from "./../../assets/images/icon.png";
 // import { BsPlay } from "react-icons/bs";
@@ -162,6 +162,7 @@ const Home = () => {
                     }
                     `}
                     >
+                      <div className="blur-overlay" />
                       <div
                         className="mic-icon mic-icon-top"
                         onClick={handleMicClick}
